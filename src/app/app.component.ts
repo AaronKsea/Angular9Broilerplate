@@ -6,10 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  filterText: string = '';
   servers = [
     {
       instanceType: 'medium',
-      name: 'Production Server',
+      name: 'Production',
       status: 'stable',
       started: new Date(15, 1, 2017)
     },
@@ -39,4 +41,23 @@ export class AppComponent {
       'list-group-item-danger': server.status === 'critical'
     };
   }
+
+  OnAddServer() {
+    this.servers.push({
+      instanceType : 'New Server',
+      name: 'Unknown',
+      status: 'stable',
+      started: new Date()
+    })
+  }
+
+  appstatus = new Promise(
+    (reslve, reject) => {
+      setTimeout(
+        ()=>{
+          reslve('stable');
+        },2000)
+
+    }
+  )
 }

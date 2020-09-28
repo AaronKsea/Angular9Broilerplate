@@ -4,15 +4,25 @@
       <ul class="list-group">
         <li
           class="list-group-item"
-          *ngFor="let server of servers"
+          *ngFor="let server of servers|filterPipe:filterText"
           [ngClass]="getStatusClasses(server)">
           <span
             class="badge">
             {{ server.status }}
           </span>
-          <strong>{{ server.name }}</strong> | {{ server.instanceType }} | {{ server.started }}
+          <strong>{{ server.name | shorten }}</strong> | 
+          {{ server.instanceType | uppercase }} | 
+          {{ server.started | date: 'fullDate' }}
         </li>
       </ul>
+    </div> 
+    <div class=" col-xs-12 col-sm-10 col-md-8 col-md-offset-2">
+      <input class=" form-control" 
+      type="text"
+      [(ngModel)]="filterText">
+      <button class="btn btn-primary" (click)="OnAddServer()">Add server</button>
+      <br><br>
+      <label for="status">App status: {{appstatus| async}}</label>
     </div>
   </div>
 </div>
