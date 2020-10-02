@@ -16,5 +16,6 @@
     {
       "path": "./e2e/tsconfig.json"
     }
-]
+],
+"typeRoots": ["node_modules/@types", "node_modules/@angular"]
 }
